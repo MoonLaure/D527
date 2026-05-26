@@ -1,0 +1,349 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>D527 Memory</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- Loading -->
+
+<div id="loading">
+
+  <h2>Loading Memory...</h2>
+
+  <div class="progress-bar">
+    <div id="progress"></div>
+  </div>
+
+</div>
+
+<!-- 星空海洋 -->
+
+<div class="sky">
+
+  <div class="moon" id="mainMoon"></div>
+
+  <div class="stars"></div>
+
+</div>
+
+<div class="ocean"></div>
+
+<div class="wave wave1"></div>
+<div class="wave wave2"></div>
+
+<!-- 海浪過場 -->
+
+<div id="wave-transition" aria-hidden="true">
+  <div class="transition-water"></div>
+  <div class="transition-wave wave-back"></div>
+  <div class="transition-wave wave-front"></div>
+  <div class="transition-foam foam-one"></div>
+  <div class="transition-foam foam-two"></div>
+  <div class="transition-bubbles"></div>
+</div>
+
+<!-- 主內容 -->
+
+<div id="app">
+
+  <!-- 身分選擇 -->
+
+  <section class="screen active" id="choose-role">
+
+    <h1>請選擇你的身分</h1>
+
+    <div class="role-container">
+
+      <div class="role-card" onclick="selectRole('島島')">
+        <div class="img-box role-island"></div>
+        <h3>島島</h3>
+      </div>
+
+      <div class="role-card" onclick="selectRole('珊')">
+        <div class="img-box role-shan">
+          <img src="images/珊.png" alt="珊">
+        </div>
+        <h3>珊</h3>
+      </div>
+
+      <div class="role-card" onclick="selectRole('寧')">
+        <div class="img-box role-ning">
+          <img src="images/寧.png" alt="寧">
+        </div>
+        <h3>寧</h3>
+      </div>
+
+      <div class="role-card" onclick="selectRole('Louis')">
+        <div class="img-box role-louis">
+          <img src="images/Louis.png" alt="Louis">
+        </div>
+        <h3>Louis</h3>
+      </div>
+
+      <div class="role-card" onclick="selectRole('Heng')">
+        <div class="img-box role-heng">
+          <img src="images/Heng.jpg" alt="Heng">
+        </div>
+        <h3>Heng</h3>
+      </div>
+
+      <div class="role-card" onclick="selectRole('小周')">
+        <div class="img-box role-xiaozhou">
+          <img src="images/小周.png" alt="小周">
+        </div>
+        <h3>小周</h3>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- 島主流程 -->
+
+  <!-- 問題1 -->
+
+  <section class="screen" id="question1">
+
+    <h2>請問我們的島主生日幾號?</h2>
+
+    <button onclick="checkBirthday('512')">512</button>
+    <button onclick="checkBirthday('527')">527</button>
+    <button onclick="checkBirthday('601')">601</button>
+    <button onclick="checkBirthday('715')">715</button>
+
+  </section>
+
+  <!-- 問題2 -->
+
+  <section class="screen" id="question2">
+
+    <h2>請問代表島主的愛心顏色是甚麼?</h2>
+
+    <textarea id="heartColorAnswer"></textarea>
+
+    <br>
+
+    <button onclick="checkHeartColor()">送出答案</button>
+
+  </section>
+
+  <!-- 五個影片頁 -->
+
+  <section class="screen" id="song-intro">
+
+    <h1>來聽聽這半個月來，我們選出的幾首精選歌曲</h1>
+
+  <button onclick="goToVideo('video1')">前往歌曲1</button>
+
+  </section>
+
+  <section class="screen video-page" id="video1">
+
+    <div class="video-title"> 至少還有你 </div>
+
+    <video controls>
+      <source src="videos/至少還有你.mp4">
+    </video>
+
+    <button onclick="goToVideo('video2')">下一頁</button>
+
+  </section>
+
+  <section class="screen video-page" id="video2">
+
+    <div class="video-title"> 奇妙能力歌 </div>
+
+    <video controls>
+      <source src="videos/奇妙能力歌.mp4">
+    </video>
+
+    <button onclick="goToVideo('video3')">下一頁</button>
+
+  </section>
+
+  <section class="screen video-page" id="video3">
+
+    <div class="video-title"> 電台情歌 </div>
+
+    <video controls>
+      <source src="videos/電台情歌.mp4">
+    </video>
+
+    <button onclick="goToVideo('video4')">下一頁</button>
+
+  </section>
+
+  <section class="screen video-page" id="video4">
+
+    <div class="video-title"> 慢慢喜歡你 </div>
+
+    <video controls>
+      <source src="videos/慢慢喜歡你.mp4">
+    </video>
+
+    <button onclick="goToVideo('video5')">下一頁</button>
+
+  </section>
+
+  <section class="screen video-page" id="video5">
+
+    <div class="video-title"> 最可愛的麒麟(大萌一) </div>
+
+    <video controls id="lastVideo">
+      <source src="videos/麒麟.mp4">
+    </video>
+
+    <button onclick="goToLetters()">前往信件</button>
+
+
+  </section>
+
+
+  <div class="sky">
+
+    <div class="moon" id="mainMoon">
+
+  </div>
+
+  <div class="stars"></div>
+
+  </div>
+
+  <div class="ocean"></div>
+
+  <div class="beach"></div>
+
+  <div class="wave wave1"></div>
+  <div class="wave wave2"></div>
+
+  <!-- 五頁信件 -->
+
+  <section class="screen letter-page" id="letter1">
+
+    <h1>來看看這幾封信吧~~</h1>
+
+    <div class="envelope" onclick="openLetter(1)">
+      <div class="seal">按</div>
+    </div>
+
+    <div class="paper" id="paper1"></div>
+
+    <button onclick="goToLetterPage('letter2')">下一頁</button>
+
+  </section>
+
+  <section class="screen letter-page" id="letter2">
+
+    <h1>來看看這幾封信吧~~</h1>
+
+    <div class="envelope" onclick="openLetter(2)">
+      <div class="seal">按</div>
+    </div>
+
+    <div class="paper" id="paper2"></div>
+
+    <button onclick="goToLetterPage('letter3')">下一頁</button>
+
+  </section>
+
+  <section class="screen letter-page" id="letter3">
+
+    <h1>來看看這幾封信吧~~</h1>
+
+    <div class="envelope" onclick="openLetter(3)">
+      <div class="seal">按</div>
+    </div>
+
+    <div class="paper" id="paper3"></div>
+
+    <button onclick="goToLetterPage('letter4')">下一頁</button>
+
+  </section>
+
+  <section class="screen letter-page" id="letter4">
+
+    <h1>來看看這幾封信吧~~</h1>
+
+    <div class="envelope" onclick="openLetter(4)">
+      <div class="seal">按</div>
+    </div>
+
+    <div class="paper" id="paper4"></div>
+
+    <button onclick="goToLetterPage('letter5')">下一頁</button>
+
+  </section>
+
+  <section class="screen letter-page" id="letter5">
+
+    <h1>來看看這幾封信吧~~</h1>
+
+    <div class="envelope" onclick="openLetter(5)">
+      <div class="seal">按</div>
+    </div>
+
+    <div class="paper" id="paper5"></div>
+
+    <button onclick="goToLetterPage('end')">前往最後一頁</button>
+
+  </section>
+
+  <section class="screen final-page" id="final-page">
+
+    <!-- 煙火 -->
+
+    <div class="firework left1"></div>
+    <div class="firework left2"></div>
+
+    <div class="firework right1"></div>
+    <div class="firework right2"></div>
+
+   <!-- 文字 -->
+
+    <h1 class="final-text">谢谢妳的陪伴，岛岛生日快乐</h1>
+
+   <!-- 照片 -->
+
+    <img src="images/final.jpg" class="final-photo">
+
+  </section>
+
+  <!-- 其他人登入 -->
+
+  <section class="screen" id="write-letter">
+
+    <h1>請輸入你的信件內容</h1>
+
+    <textarea id="userLetter"></textarea>
+
+    <br>
+
+    <button onclick="submitLetter()">輸入完畢</button>
+
+  </section>
+
+  <!-- 完成 -->
+
+  <section class="screen" id="thanks-page">
+
+    <div class="thanks-text">
+
+      謝謝妳的努力，我們5/27見~~
+
+    </div>
+
+  </section>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

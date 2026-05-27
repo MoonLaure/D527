@@ -409,58 +409,6 @@ body::before{
 }
 
 /* =========================
-   月亮小彩蛋
-========================= */
-
-.person{
-  width:55px;
-  height:110px;
-  background:black;
-  position:absolute;
-  bottom:20px;
-  left:50%;
-  transform:translateX(-50%);
-  border-radius:30px;
-  cursor:pointer;
-}
-
-.person::before{
-  content:'';
-  width:45px;
-  height:45px;
-  border-radius:50%;
-  background:black;
-  position:absolute;
-  top:-30px;
-  left:5px;
-}
-
-/* 小月彈窗 */
-
-#xiaoyue-popup{
-  position:fixed;
-  width:500px;
-  padding:30px;
-  background:rgba(0,0,0,0.8);
-  border:1px solid rgba(255,255,255,0.3);
-  border-radius:25px;
-  backdrop-filter:blur(10px);
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  z-index:99999;
-  display:none;
-}
-
-#xiaoyue-popup img{
-  width:180px;
-  height:180px;
-  border-radius:50%;
-  object-fit:cover;
-  margin-bottom:20px;
-}
-
-/* =========================
    最終頁煙火
 ========================= */
 
@@ -722,6 +670,46 @@ textarea{
   padding:40px;
   border-radius:20px;
   display:none;
+}
+
+.paper {
+  width: min(82vw, 620px);
+  min-height: 360px;
+  max-height: 62vh;
+  overflow-y: auto;
+  margin: 24px auto;
+  padding: 44px 44px 36px 58px;
+  border-radius: 12px;
+  color: #4b3a35;
+  text-align: left;
+  line-height: 32px;
+  box-shadow: 0 16px 35px rgba(42, 29, 24, 0.22);
+  border: 1px solid rgba(142, 111, 85, 0.35);
+  background:
+    linear-gradient(90deg, rgba(231, 122, 122, 0.38) 0 2px, transparent 2px 100%),
+    repeating-linear-gradient(
+      to bottom,
+      #fffdf5 0px,
+      #fffdf5 31px,
+      rgba(102, 147, 190, 0.38) 32px
+    );
+  background-position: 42px 0, 0 0;
+  font-family: "Noto Serif TC", "Microsoft JhengHei", serif;
+  letter-spacing: 0.04em;
+}
+
+.paper h2 {
+  margin: 0 0 16px;
+  font-size: 26px;
+  color: #5a4037;
+  line-height: 36px;
+}
+
+.paper p {
+  margin: 0;
+  font-size: 18px;
+  line-height: 32px;
+  white-space: normal;
 }
 
 /* 最終頁：改回原本單純的煙火、文字、照片版面 */

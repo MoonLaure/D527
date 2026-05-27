@@ -22,6 +22,50 @@ let loading = setInterval(() => {
 // 玩家身份
 let playerRole = "";
 
+// 每個人的第二題設定
+// question 是畫面顯示的問題
+// answers 裡面可以放多個可接受答案
+const secondQuestions = {
+  "島島": {
+    question: "請問代表島主的愛心顏色是甚麼?",
+    answers: ["白色", "白", "🤍"]
+  },
+  "珊": {
+    question: "請問珊的代表顏色是甚麼?",
+    answers: ["粉色", "粉紅色", "粉", "🩷"]
+  },
+  "寧": {
+    question: "請問寧的代表顏色是甚麼?",
+    answers: ["藍色", "藍", "💙"]
+  },
+  "Louis": {
+    question: "請問 Louis 的代表顏色是甚麼?",
+    answers: ["綠色", "綠", "💚"]
+  },
+  "Heng": {
+    question: "請問 Heng 的代表顏色是甚麼?",
+    answers: ["黃色", "黃", "💛"]
+  },
+  "小周": {
+    question: "請問小周的代表顏色是甚麼?",
+    answers: ["紫色", "紫", "💜"]
+  }
+};
+
+function setupQuestion2() {
+  const title = document.getElementById("question2Text");
+  const textarea = document.getElementById("heartColorAnswer");
+  const setting = secondQuestions[playerRole] || secondQuestions["島島"];
+
+  if (title) {
+    title.textContent = setting.question;
+  }
+
+  if (textarea) {
+    textarea.value = "";
+  }
+}
+
 // 信件資料
 // ========================================
 // ✨ 信件內容填在這裡 ✨
@@ -89,6 +133,8 @@ function waveTransition(nextPage) {
   setTimeout(() => {
     wave.classList.remove("wave-animate");
   }, 1900);
+  
+  stopAllMedia();
 }
 
 // 選角色
@@ -99,13 +145,15 @@ function selectRole(role) {
     waveTransition("question1");
   }
   else {
-    waveTransition("write-letter");
+    setupQuestion2();
+    waveTransition("question2");
   }
 }
 
 // 第一題
 function checkBirthday(answer) {
   if (answer === "527") {
+    setupQuestion2();
     waveTransition("question2");
   }
   else {
@@ -115,14 +163,16 @@ function checkBirthday(answer) {
 
 // 第二題
 function checkHeartColor() {
-  const answer = document.getElementById("heartColorAnswer").value.trim();
+  const textarea = document.getElementById("heartColorAnswer");
+  const answer = textarea ? textarea.value.trim() : "";
+  const setting = secondQuestions[playerRole] || secondQuestions["島島"];
 
   if (answer === "") {
     alert("請先輸入答案喔 ✨");
     return;
   }
 
-  if (answer === "白色") {
+  if (setting.answers.includes(answer)) {
     waveTransition("song-intro");
   }
   else {
@@ -140,7 +190,7 @@ setTimeout(() => {
   const video = page.querySelector("video");
 
   video.play();
-}, 5000);
+}, 2000);
 
 function stopAllMedia() {
   document.querySelectorAll("video, audio").forEach(media => {

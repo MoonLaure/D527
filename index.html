@@ -62,13 +62,15 @@
     <div class="role-container">
 
       <div class="role-card" onclick="selectRole('島島')">
-        <div class="img-box role-island"></div>
+        <div class="img-box role-island">
+          <img src="images/島島.jpg" alt="島島">
+        </div>  
         <h3>島島</h3>
       </div>
 
       <div class="role-card" onclick="selectRole('珊')">
         <div class="img-box role-shan">
-          <img src="images/珊.png" alt="珊">
+          <img src="images/珊.jpg" alt="珊">
         </div>
         <h3>珊</h3>
       </div>
@@ -124,9 +126,9 @@
 
   <section class="screen" id="question2">
 
-    <h2>請問代表島主的愛心顏色是甚麼?</h2>
+    <h2 id="question2Text">請回答第二題</h2>
 
-    <textarea id="heartColorAnswer"></textarea>
+    <textarea id="heartColorAnswer" placeholder="請輸入答案"></textarea>
 
     <br>
 
@@ -140,7 +142,7 @@
 
     <h1>來聽聽這半個月來，我們選出的幾首精選歌曲</h1>
 
-  <button onclick="goToVideo('video1')">前往歌曲1</button>
+  <button onclick="goToVideo('video1')">前往歌曲</button>
 
   </section>
 
@@ -185,7 +187,7 @@
     <div class="video-title"> 慢慢喜歡你 </div>
 
     <video controls>
-      <source src="videos/慢慢喜歡你.mp4">
+      <source src="videos/慢慢喜歡妳.mp4">
     </video>
 
     <button onclick="goToVideo('video5')">下一頁</button>
@@ -227,7 +229,7 @@
 
   <section class="screen letter-page" id="letter1">
 
-    <h1>來看看這幾封信吧~~</h1>
+    <h1>來看看我們想給你的祝福吧~~</h1>
 
     <div class="envelope" onclick="openLetter(1)">
       <div class="seal">按</div>
@@ -241,7 +243,7 @@
 
   <section class="screen letter-page" id="letter2">
 
-    <h1>來看看這幾封信吧~~</h1>
+    <h1>來看看我們想給你的祝福吧~~</h1>
 
     <div class="envelope" onclick="openLetter(2)">
       <div class="seal">按</div>
@@ -255,7 +257,7 @@
 
   <section class="screen letter-page" id="letter3">
 
-    <h1>來看看這幾封信吧~~</h1>
+    <h1>來看看我們想給你的祝福吧~~</h1>
 
     <div class="envelope" onclick="openLetter(3)">
       <div class="seal">按</div>
@@ -269,7 +271,7 @@
 
   <section class="screen letter-page" id="letter4">
 
-    <h1>來看看這幾封信吧~~</h1>
+    <h1>來看看我們想給你的祝福吧~~</h1>
 
     <div class="envelope" onclick="openLetter(4)">
       <div class="seal">按</div>
@@ -283,7 +285,7 @@
 
   <section class="screen letter-page" id="letter5">
 
-    <h1>來看看這幾封信吧~~</h1>
+    <h1>來看看我們想給你的祝福吧~~</h1>
 
     <div class="envelope" onclick="openLetter(5)">
       <div class="seal">按</div>
@@ -307,7 +309,7 @@
 
    <!-- 文字 -->
 
-    <h1 class="final-text">谢谢妳的陪伴，岛岛生日快乐</h1>
+    <h1 class="final-text">谢谢妳的陪伴，岛岛生日快乐🎂🎂</h1>
 
    <!-- 照片 -->
 

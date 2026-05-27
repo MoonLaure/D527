@@ -20,7 +20,14 @@ let loading = setInterval(() => {
 }, 300);
 
 // 玩家身份
-let playerRole = "";
+const roleImages = {
+  "島島": "images/島島.jpg",
+  "珊": "images/珊.jpg",
+  "寧": "images/寧.png",
+  "松": "images/Louis.png",
+  "Heng": "images/Heng.jpg",
+  "小周": "images/小周.png"
+};
 
 // 每個人的第二題設定
 // question 是畫面顯示的問題
@@ -31,24 +38,24 @@ const secondQuestions = {
     answers: ["白色", "白", "🤍"]
   },
   "珊": {
-    question: "請問珊的代表顏色是甚麼?",
-    answers: ["粉色", "粉紅色", "粉", "🩷"]
+    question: "請問珊的喜歡的動漫是?",
+    answers: ["排球少年","排少"]
   },
   "寧": {
-    question: "請問寧的代表顏色是甚麼?",
-    answers: ["藍色", "藍", "💙"]
+    question: "請問寧喜歡的歌手是誰?",
+    answers: ["少女時代", "太妍"]
   },
-  "Louis": {
-    question: "請問 Louis 的代表顏色是甚麼?",
-    answers: ["綠色", "綠", "💚"]
+  "松": {
+    question: "請問 松 的貓貓叫甚麼?",
+    answers: ["松松"]
   },
   "Heng": {
-    question: "請問 Heng 的代表顏色是甚麼?",
-    answers: ["黃色", "黃", "💛"]
+    question: "請問 Heng 的IG開頭是甚麼?",
+    answers: ["N","n" ]
   },
   "小周": {
-    question: "請問小周的代表顏色是甚麼?",
-    answers: ["紫色", "紫", "💜"]
+    question: "請問小周的IG數字是多少?",
+    answers: ["0113"]
   }
 };
 
@@ -83,7 +90,7 @@ let letters = [
     content: `感谢那个睡不着而开直播玩游戏的夜晚，让我们刚好走进，也因此有了后来的熟识与「岛岛的秘密基地」。喜欢你的真诚、你的歌声，还有你的笑声。愿你往后的日子都能顺心、开心。岛岛，生日快乐。`
   },
   {
-    title: "Louis 的信",
+    title: "松的信",
     content: `岛岛，很开心能遇到妳，感谢当初的勇气去你直播间找你，陪我们大家渡过愉快的每个夜晚，生日快乐！ ！`
   },
   {
@@ -91,8 +98,8 @@ let letters = [
     content: `㊗️岛岛生日快乐，天天快乐平安。`
   },
   {
-    title: "小月的信",
-    content: `這裡填入第五封信的內容。`
+    title: "小周的信",
+    content: `亲爱的岛岛生日快乐🎂🎂我们的缘分开始于开爵位，而我们真正的开始也是开爵位（偷偷说前一个我后悔了🥲🥲）。只能说命运就爱跟我们开玩笑，但我还是很感谢命运的安排，让我们能够有开始的机会，让我有幸的可以看到UME•岛，也可以看到blove那一面，能听到妳充满故事的歌声、开怀大笑的笑声和逃避我们作弄的撒娇声，和我们像朋友一样相处、一起玩，真的让我很高兴也让我觉得好幸运。虽然我们认识不久，但我真的觉得，小岛妳是一个很好很好的人，特别的仗义又真诚，有时候却幼稚得可爱，是个心思细腻又有趣的人。愿妳未来的路上能少点荆棘，人生路途上遇到的人都是好人，不管是过去还是现在或是未来都要快乐，希望我的存在能带给妳快乐，我也会尽我所能的让妳开心幸福，最后再说一次，芜松岛、blove生日快乐！！！爱妳🤍🤍🤍`
   }
 ];
 // 其他人現場輸入的信件會暫存在這裡。
@@ -141,12 +148,23 @@ function waveTransition(nextPage) {
 function selectRole(role) {
   playerRole = role;
 
-  if (role === "島島") {
-    waveTransition("question1");
+  updateRoleDisplay();
+  waveTransition("question1");
+}
+
+function updateRoleDisplay() {
+  const birthdayQuestion = document.getElementById("birthdayQuestion");
+  const avatarBox = document.getElementById("currentRoleAvatar");
+  const avatarImg = document.getElementById("currentRoleImg");
+
+  if (birthdayQuestion) {
+    birthdayQuestion.textContent = `妳好${playerRole}，請問我們的島主生日幾號?`;
   }
-  else {
-    setupQuestion2();
-    waveTransition("question2");
+
+  if (avatarBox && avatarImg && roleImages[playerRole]) {
+    avatarImg.src = roleImages[playerRole];
+    avatarImg.alt = playerRole;
+    avatarBox.style.display = "flex";
   }
 }
 
@@ -175,22 +193,85 @@ function checkHeartColor() {
   if (setting.answers.includes(answer)) {
     waveTransition("song-intro");
   }
-  else {
-    alert("答錯了 ✨");
+    else {
+      if (playerRole === "島島") {
+        alert("答錯了 ✨");
+      }
+      else {
+        alert("妳是不是島主想換身分阿??不可以喔~~請換回去~~");
+        goHome();
+      }
+    }
+}
+
+function goHome() {
+  // 停止所有正在播放的影片或音訊
+  if (typeof stopAllMedia === "function") {
+    stopAllMedia();
   }
+
+  // 清空目前角色
+  playerRole = "";
+
+  // 清空第二題輸入
+  const heartAnswer = document.getElementById("heartColorAnswer");
+  if (heartAnswer) {
+    heartAnswer.value = "";
+  }
+
+  // 清空寫信內容
+  const userLetter = document.getElementById("userLetter");
+  if (userLetter) {
+    userLetter.value = "";
+  }
+
+  // 隱藏月亮旁邊的角色頭像
+  const avatarBox = document.getElementById("currentRoleAvatar");
+  const avatarImg = document.getElementById("currentRoleImg");
+
+  if (avatarBox) {
+    avatarBox.style.display = "none";
+  }
+
+  if (avatarImg) {
+    avatarImg.src = "";
+    avatarImg.alt = "目前角色";
+  }
+
+  // 回到最一開始的身分選擇頁
+  switchScreen("choose-role");
 }
 
 // 前往影片
+let autoPlayTimer = null;
+
 function goToVideo(videoId) {
   waveTransition(videoId);
+
+
+  if (videoId === "video5") {
+    const goLettersBtn = document.getElementById("goLettersBtn");
+    if (goLettersBtn) {
+      goLettersBtn.disabled = true;
+    }
+  }
+
+  if (autoPlayTimer) {
+    clearTimeout(autoPlayTimer);
+  }
+
+  autoPlayTimer = setTimeout(() => {
+    const page = document.getElementById(videoId);
+    if (!page) return;
+
+    const video = page.querySelector("video");
+    if (!video) return;
+
+    video.play().catch(() => {
+      alert("瀏覽器阻擋自動播放，請手動按播放鍵喔 ✨");
+    });
+  }, 2000);
 }
-
-setTimeout(() => {
-  const page = document.getElementById(videoId);
-  const video = page.querySelector("video");
-
-  video.play();
-}, 2000);
 
 function stopAllMedia() {
   document.querySelectorAll("video, audio").forEach(media => {
@@ -209,13 +290,19 @@ const lastVideo = document.getElementById("lastVideo");
 
 if (lastVideo) {
   lastVideo.addEventListener("ended", () => {
-    // 保持背景月亮為純月亮，不再把人影塞進月亮裡。
     const moon = document.getElementById("mainMoon");
     if (moon) {
       moon.innerHTML = "";
     }
+
+    const goLettersBtn = document.getElementById("goLettersBtn");
+    if (goLettersBtn) {
+      goLettersBtn.disabled = false;
+    }
   });
 }
+
+let openedLetters = {};
 
 // 前往信件
 function goToLetters() {
@@ -224,6 +311,17 @@ function goToLetters() {
 
 // 下一封信 / 最後一頁
 function goToLetterPage(next) {
+  const currentLetterPage = document.querySelector(".letter-page.active");
+
+  if (currentLetterPage) {
+    const currentNum = currentLetterPage.id.replace("letter", "");
+
+    if (!openedLetters[currentNum]) {
+      alert("要先打開這封信才能前往下一頁喔 ✨");
+      return;
+    }
+  }
+
   if (next === "end") {
     waveTransition("final-page");
     return;
@@ -255,6 +353,13 @@ function openLetter(num) {
     <h2>${letter.title}</h2>
     <p>${letter.content.replace(/\n/g, "<br>")}</p>
   `;
+
+  openedLetters[num] = true;
+
+  const nextBtn = document.getElementById("letterNext" + num);
+  if (nextBtn) {
+    nextBtn.disabled = false;
+  }
 }
 
 // 其他人提交信件

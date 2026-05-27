@@ -26,9 +26,7 @@
 <!-- 星空海洋 -->
 
 <div class="sky">
-
   <div class="moon" id="mainMoon"></div>
-
   <div class="stars"></div>
 
 </div>
@@ -86,7 +84,7 @@
         <div class="img-box role-louis">
           <img src="images/Louis.png" alt="Louis">
         </div>
-        <h3>Louis</h3>
+        <h3>松</h3>
       </div>
 
       <div class="role-card" onclick="selectRole('Heng')">
@@ -202,7 +200,7 @@
       <source src="videos/麒麟.mp4">
     </video>
 
-    <button onclick="goToLetters()">前往信件</button>
+    <button id="goLettersBtn" onclick="goToLetters()" disabled>前往信件</button>
 
 
   </section>
@@ -210,8 +208,12 @@
 
   <div class="sky">
 
-    <div class="moon" id="mainMoon">
+  <div class="moon-area">
+    <div class="moon" id="mainMoon"></div>
 
+    <div class="current-role-avatar" id="currentRoleAvatar">
+      <img id="currentRoleImg" src="" alt="目前角色">
+    </div>
   </div>
 
   <div class="stars"></div>
@@ -237,7 +239,7 @@
 
     <div class="paper" id="paper1"></div>
 
-    <button onclick="goToLetterPage('letter2')">下一頁</button>
+    <button id="letterNext1" onclick="goToLetterPage('letter2')" disabled>下一頁</button>
 
   </section>
 
@@ -251,7 +253,7 @@
 
     <div class="paper" id="paper2"></div>
 
-    <button onclick="goToLetterPage('letter3')">下一頁</button>
+    <button id="letterNext2" onclick="goToLetterPage('letter3')" disabled>下一頁</button>
 
   </section>
 
@@ -265,7 +267,7 @@
 
     <div class="paper" id="paper3"></div>
 
-    <button onclick="goToLetterPage('letter4')">下一頁</button>
+    <button id="letterNext3" onclick="goToLetterPage('letter4')" disabled>下一頁</button>
 
   </section>
 
@@ -279,7 +281,7 @@
 
     <div class="paper" id="paper4"></div>
 
-    <button onclick="goToLetterPage('letter5')">下一頁</button>
+    <button id="letterNext4" onclick="goToLetterPage('letter5')" disabled>下一頁</button>
 
   </section>
 
@@ -293,7 +295,7 @@
 
     <div class="paper" id="paper5"></div>
 
-    <button onclick="goToLetterPage('end')">前往最後一頁</button>
+    <button id="letterNext5" onclick="goToLetterPage('end')" disabled>前往最後一頁</button>
 
   </section>
 

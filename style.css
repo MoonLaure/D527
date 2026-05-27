@@ -129,6 +129,35 @@ body::before{
   box-shadow:inset -28px -18px 36px rgba(73,58,19,0.16);
 }
 
+.moon-area {
+  position: relative;
+}
+
+.current-role-avatar {
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 0 18px rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.35);
+  z-index: 5;
+}
+
+.current-role-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
 /* 海 */
 
 .ocean{
@@ -603,6 +632,12 @@ button:active{
   box-shadow:none;
 }
 
+button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  filter: grayscale(0.4);
+}
+
 /* textarea */
 
 textarea{
@@ -699,7 +734,7 @@ textarea{
 }
 
 .paper h2 {
-  margin: 0 0 16px;
+  margin: -60 0 14px;
   font-size: 26px;
   color: #5a4037;
   line-height: 36px;
